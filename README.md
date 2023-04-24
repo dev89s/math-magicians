@@ -18,7 +18,7 @@
   - [Tech Stack ](#tech-stack)
   - [Key Features ](#key-features)
 - [🚀 Live Demo ](#live-demo)
-- [🎬 Representation](#representation)
+<!-- - [🎬 Representation](#representation) -->
 - [💻 Getting Started ](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
