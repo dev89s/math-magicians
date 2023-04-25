@@ -1,8 +1,7 @@
 import { PropTypes } from 'prop-types';
-import { useState } from 'react';
 
 function Calculator() {
-  const [result] = useState(0);
+  const result = 0;
   const multiply = '\u{00d7}';
   const divide = '\u{00f7}';
   return (
