@@ -1,16 +1,17 @@
 import { PropTypes } from 'prop-types';
+import { useState } from 'react';
 
 function Calculator() {
-  const res = 0;
+  const [result] = useState(0);
   const multiply = '\u{00d7}';
-  const dvidie = '\u{00f7}';
+  const divide = '\u{00f7}';
   return (
     <div className="calculator">
-      <Display result={res} />
+      <Display result={result} />
       <GreyButton buttonText="AC" />
       <GreyButton buttonText="+/-" />
       <GreyButton buttonText="%" />
-      <OrangeButton buttonText={dvidie} />
+      <OrangeButton buttonText={divide} />
       <GreyButton buttonText="7" />
       <GreyButton buttonText="8" />
       <GreyButton buttonText="9" />
