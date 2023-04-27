@@ -32,7 +32,7 @@ function Quotes() {
 
   if (isLoading) {
     return (
-      <div className="quote">page is loading...</div>
+      <div className="quote">quote is loading...</div>
     );
   }
   if (hasError) {
