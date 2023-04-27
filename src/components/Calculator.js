@@ -1,79 +1,138 @@
 import { PropTypes } from 'prop-types';
+import { useState } from 'react';
+import calculate from '../logic/calculator';
 
 function Calculator() {
-  const result = 0;
-  const multiply = '\u{00d7}';
-  const divide = '\u{00f7}';
+  const initState = {
+    total: null,
+    next: null,
+    operation: null,
+  };
+  const [calcState, updateCalcState] = useState(initState);
+  const onClick = (buttonText) => {
+    updateCalcState(calculate(calcState, buttonText));
+  };
+
   return (
     <div className="calculator">
-      <Display result={result} />
-      <GreyButton buttonText="AC" />
-      <GreyButton buttonText="+/-" />
-      <GreyButton buttonText="%" />
-      <OrangeButton buttonText={divide} />
-      <GreyButton buttonText="7" />
-      <GreyButton buttonText="8" />
-      <GreyButton buttonText="9" />
-      <OrangeButton buttonText={multiply} />
-      <GreyButton buttonText="4" />
-      <GreyButton buttonText="5" />
-      <GreyButton buttonText="6" />
-      <OrangeButton buttonText="-" />
-      <GreyButton buttonText="1" />
-      <GreyButton buttonText="2" />
-      <GreyButton buttonText="3" />
-      <OrangeButton buttonText="+" />
-      <ZeroButton buttonText="0" />
-      <GreyButton buttonText="." />
-      <OrangeButton buttonText="=" />
+      <Display total={calcState.total} input={calcState.next} />
+      <Keypad onClick={onClick} />
     </div>
   );
 }
 
 function Display(props) {
-  const { result } = props;
+  const { total, input } = props;
+  let disNum;
+  if (input) {
+    disNum = input;
+  } else if (total) {
+    disNum = total;
+  } else {
+    disNum = 0;
+  }
   return (
     <span className="calc-display">
-      {result}
+      {disNum}
     </span>
   );
 }
 
-Display.defaultProps = { result: 0 };
+Display.defaultProps = { input: 0, total: 0 };
 
-Display.propTypes = { result: PropTypes.number };
+Display.propTypes = {
+  input: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  total: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+};
+
+function Keypad(props) {
+  const { onClick } = props;
+  return (
+    <div className="keypad">
+      <GreyButton buttonText="AC" onClick={onClick} />
+      <GreyButton buttonText="+/-" onClick={onClick} />
+      <GreyButton buttonText="%" onClick={onClick} />
+      <OrangeButton buttonText="÷" onClick={onClick} />
+      <GreyButton buttonText="7" onClick={onClick} />
+      <GreyButton buttonText="8" onClick={onClick} />
+      <GreyButton buttonText="9" onClick={onClick} />
+      <OrangeButton buttonText="x" onClick={onClick} />
+      <GreyButton buttonText="4" onClick={onClick} />
+      <GreyButton buttonText="5" onClick={onClick} />
+      <GreyButton buttonText="6" onClick={onClick} />
+      <OrangeButton buttonText="-" onClick={onClick} />
+      <GreyButton buttonText="1" onClick={onClick} />
+      <GreyButton buttonText="2" onClick={onClick} />
+      <GreyButton buttonText="3" onClick={onClick} />
+      <OrangeButton buttonText="+" onClick={onClick} />
+      <ZeroButton buttonText="0" onClick={onClick} />
+      <GreyButton buttonText="." onClick={onClick} />
+      <OrangeButton buttonText="=" onClick={onClick} />
+    </div>
+  );
+}
+
+Keypad.propTypes = { onClick: PropTypes.func.isRequired };
 
 function GreyButton(props) {
-  const { buttonText } = props;
+  const { buttonText, onClick } = props;
+
   return (
-    <span className="grey-button">
+    <button
+      type="button"
+      className="grey-button button"
+      onClick={() => {
+        onClick(buttonText);
+      }}
+    >
       {buttonText}
-    </span>
+    </button>
   );
 }
 
-GreyButton.propTypes = { buttonText: PropTypes.string.isRequired };
+GreyButton.propTypes = {
+  buttonText: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 function OrangeButton(props) {
-  const { buttonText } = props;
+  const { buttonText, onClick } = props;
   return (
-    <span className="orange-button">
+    <button
+      type="button"
+      className="orange-button button"
+      onClick={() => {
+        onClick(buttonText);
+      }}
+    >
       {buttonText}
-    </span>
+    </button>
   );
 }
 
-OrangeButton.propTypes = { buttonText: PropTypes.string.isRequired };
+OrangeButton.propTypes = {
+  buttonText: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 function ZeroButton(props) {
-  const { buttonText } = props;
+  const { buttonText, onClick } = props;
   return (
-    <span className="zero-button">
+    <button
+      type="button"
+      className="zero-button button"
+      onClick={() => {
+        onClick(buttonText);
+      }}
+    >
       {buttonText}
-    </span>
+    </button>
   );
 }
 
-ZeroButton.propTypes = { buttonText: PropTypes.string.isRequired };
+ZeroButton.propTypes = {
+  buttonText: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Calculator;

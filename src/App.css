@@ -19,6 +19,13 @@
   color: #fff;
 }
 
+.keypad {
+  grid-column: 1/5;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+}
+
 .orange-button,
 .grey-button,
 .zero-button {
@@ -28,6 +35,10 @@
   border: solid 1px #d1d1d1;
   height: 70px;
   cursor: pointer;
+}
+
+.button {
+  user-select: none;
 }
 
 .orange-button {
