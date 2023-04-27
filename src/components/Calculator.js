@@ -10,7 +10,6 @@ function Calculator() {
   };
   const [calcState, updateCalcState] = useState(initState);
   const onClick = (buttonText) => {
-    // console.log(buttonText);
     updateCalcState(calculate(calcState, buttonText));
   };
 
@@ -24,12 +23,13 @@ function Calculator() {
 
 function Display(props) {
   const { total, input } = props;
-  console.log('total:', total, 'next:', input);
   let disNum;
   if (input) {
     disNum = input;
-  } else {
+  } else if (total) {
     disNum = total;
+  } else {
+    disNum = 0;
   }
   return (
     <span className="calc-display">
@@ -38,9 +38,12 @@ function Display(props) {
   );
 }
 
-Display.defaultProps = { total: '0', input: '0' };
+Display.defaultProps = { input: 0, total: 0 };
 
-Display.propTypes = { total: PropTypes.string, input: PropTypes.string };
+Display.propTypes = {
+  input: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  total: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+};
 
 function Keypad(props) {
   const { onClick } = props;

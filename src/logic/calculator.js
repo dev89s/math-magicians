@@ -35,7 +35,6 @@ export default function calculate(obj, buttonName) {
     }
     // If there is no operation, update next and clear the value
     if (obj.next && obj.next !== '0') {
-      console.log('ever hit this?');
       return {
         next: obj.next + buttonName,
         total: null,
@@ -67,9 +66,17 @@ export default function calculate(obj, buttonName) {
   }
 
   if (buttonName === '=') {
-    if (obj.next && obj.operation) {
+    if (obj.next && obj.operation && obj.total) {
       return {
         total: operate(obj.total, obj.next, obj.operation),
+        next: null,
+        operation: null,
+      };
+    }
+    // '=' with no total, give 0 as total
+    if (obj.next && obj.operation) {
+      return {
+        total: operate('0', obj.next, obj.operation),
         next: null,
         operation: null,
       };
