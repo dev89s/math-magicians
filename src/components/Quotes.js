@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { PropTypes } from 'prop-types';
 
-function Quotes() {
+function Quotes({ newQuote }) {
   const [quote, updateQuote] = useState('');
   const [hasError, updateHasError] = useState(false);
   const [isLoading, updateIsLoading] = useState(false);
@@ -28,32 +29,34 @@ function Quotes() {
     };
 
     doFetch();
-  }, []);
+  }, [newQuote]);
 
   if (isLoading) {
     return (
-      <div className="quote">Fact is loading...</div>
+      <p>Fact is loading...</p>
     );
   }
   if (hasError) {
     return (
-      <div className="quote">
+      <p>
         There is something wrong.
         <br />
         Error:
         {' '}
         {hasError}
-      </div>
+      </p>
     );
   }
 
   return (
-    <div className="quote">
+    <p>
       The Fact of the day:
       <br />
       {quote}
-    </div>
+    </p>
   );
 }
+
+Quotes.propTypes = { newQuote: PropTypes.bool.isRequired };
 
 export default Quotes;
