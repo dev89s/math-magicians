@@ -53,10 +53,12 @@ function Quotes({ newQuote }) {
       The Fact of the day:
       <br />
       <br />
-      {quote.quote}
+      <q>
+        {quote.quote}
+      </q>
       <br />
       <br />
-      -Author:
+      - Author:
       {' '}
       {quote.author}
     </p>
