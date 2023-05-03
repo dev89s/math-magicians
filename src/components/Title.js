@@ -1,6 +1,8 @@
+import { NavLink } from 'react-router-dom';
+
 function Title() {
   return (
-    <h1>Math Magicians</h1>
+    <h1 className="title"><NavLink className="title-link" to="/">Math Magicians</NavLink></h1>
   );
 }
 

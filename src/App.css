@@ -8,12 +8,29 @@
   align-items: center;
 }
 
+.title:hover {
+  transform: scale(1.02);
+}
+
+.title-link {
+  color: #2f66b3;
+  text-decoration: none;
+}
+
+.title-link:hover {
+  color: #000;
+}
+
 .navbar {
   display: flex;
   padding: 0;
   justify-content: center;
   list-style: none;
   gap: 40px;
+}
+
+.navbar li:hover {
+  transform: scale(1.05);
 }
 
 .navbar li a {
