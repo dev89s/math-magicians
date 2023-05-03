@@ -8,7 +8,7 @@ function Quotes({ newQuote }) {
 
   useEffect(() => {
     const doFetch = async () => {
-      const url = 'https://api.api-ninjas.com/v1/facts?limit=1';
+      const url = 'https://api.api-ninjas.com/v1/quotes?category=computers';
       updateIsLoading(true);
       try {
         const response = await fetch(url, {
@@ -18,7 +18,7 @@ function Quotes({ newQuote }) {
         });
         if (response.ok) {
           const [data] = await response.json();
-          updateQuote(data.fact);
+          updateQuote(data);
         } else {
           updateHasError(response.status);
         }
@@ -52,7 +52,13 @@ function Quotes({ newQuote }) {
     <p>
       The Fact of the day:
       <br />
-      {quote}
+      <br />
+      {quote.quote}
+      <br />
+      <br />
+      -Author:
+      {' '}
+      {quote.author}
     </p>
   );
 }
