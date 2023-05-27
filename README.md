@@ -82,7 +82,7 @@
 
 ## 🚀 Live Demo <a id="live-demo"></a>
 
-- An implementation of this portfolio is live on [Github Pages](https://dev89s.github.io/math-magicians/dist/) (to be updated)
+- An implementation of this portfolio is live on [Github Pages](https://math-magicians-tx7n.onrender.com/) (to be updated)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
